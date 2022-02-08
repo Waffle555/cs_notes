@@ -1,0 +1,696 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JavaScript</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2f6f34c2-9b6e-4a95-9192-e669ecef84a8" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2F2.bp.blogspot.com%2F-1lsXAuaZ5Cs%2FVLi5g8nQTmI%2FAAAAAAAACEs%2FKZdJRzgVP9Q%2Fs1600%2Fjavascript-logo-png.png&amp;f=1&amp;nofb=1"/></div><h1 class="page-title">JavaScript</h1></header><div class="page-body"><nav id="08fe9e78-4140-4b1a-bbbe-b979f8e132a3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3c20e1f3-1787-4b39-b6cf-8dc4ee73831f"><strong>primitive types</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#67983ee6-4772-4d4d-a7ca-a81cdb4f6469">Not defined vs undefined</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6cc959a0-d42f-4668-9e57-a3080ee692b1">curly braces &amp; coercion</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a20e2a9-a5a8-4602-9cea-fd32ae5278bb">Objects</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c09f0b38-d81d-4e4a-9971-97cb5e0f2486">Functions</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#05cdd5c3-81ae-4261-8620-450f0129214a">passing by value vs reference</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#baf707bd-df18-4ad4-a047-7378f81814a2"><strong>Factory functions</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#65080f30-8d09-4648-8cce-4fe9689ec2fd"><strong>Constructor Functions</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7e6b8bc9-5e44-4163-b4d9-95c6b32e753d">Function Expression</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9cbbf0cf-9e4d-4767-8fc7-b9a5a21fcfda">Object Literal </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e4930438-84d3-42e5-80e4-dc839d0a484c">Arrays</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#caefe7c9-32cf-4c08-b6e4-4a1560a70088">How does a function factory work when the return function doesn&#x27;t execute parent function</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8a3570db-37f6-491b-be40-751ca72a1995">Fake namespace</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d133b771-aa26-4547-95b1-eafe34f972a3">Immediately Invoked Function Expressions (IIFEs)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7584a52-d42c-47b0-9c4a-2cd51e27e367">DOM Manipulation </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e54fd0ec-2771-44ad-ad72-346597011518">Handling Events</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#03df23b6-b91f-47c7-8e3f-a6865bc6e57b">The event argument</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cef58ddb-4fd7-4b36-a2a7-b3005d6d2b9a">JQuery, blur</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#131868e0-f298-4f7e-8047-fe04c06d5174">ajax example</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0712b4ad-8d22-4c53-a812-a4480c4dbfd1">Changing &#x27;active&#x27; Button Style Through Javascript</a></div></nav><figure id="aa196f66-cbe2-434c-b5b7-cf4b6568a4e1" class="link-to-page"><a href="https://www.notion.so/You-Don-t-Know-JS-aa196f66cbe2434cb5b7cf4b6568a4e1">You Don&#x27;t Know JS</a></figure><p id="68c3db22-0ac1-446c-ad88-d26245e43786" class="">
+ctrl + / is comment out the line</p><figure id="d8cacc41-f7ac-4c4a-92f7-519b81e5216b" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled.png"><img style="width:699px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled.png"/></a></figure><figure id="1013369d-c125-4aff-8a59-e1ff3ba2ef39" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%201.png"><img style="width:841px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%201.png"/></a></figure><figure id="61265420-f896-4da1-b4a8-a2239976df3c" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%202.png"><img style="width:829px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%202.png"/></a></figure><figure id="98ebbd8c-f25b-42fc-8451-c016ca58adfd" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%203.png"><img style="width:855px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%203.png"/></a></figure><figure id="fbab0dd9-02fa-4f72-916a-c7f6f9415894" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%204.png"><img style="width:864px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%204.png"/></a></figure><h3 id="3c20e1f3-1787-4b39-b6cf-8dc4ee73831f" class=""><strong>primitive types</strong></h3><p id="608d50d4-ac7a-4c02-9416-5996d771efae" class="">Except for <code>null</code> and <code>undefined</code>, all primitive values have object equivalents that wrap around the primitive values:</p><ul id="661cff2b-46b3-4e32-bf11-c34f766d9962" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> for the string primitive.</li></ul><ul id="fbaa2b03-b44b-4ead-a26b-5fd879a93fde" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> for the number primitive.  (JS doesn&#x27;t have int, it only has floats)</li></ul><ul id="d0d45232-3e18-4642-baeb-1ccdf64974dd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a> for the bigint primitive.</li></ul><ul id="4e85dbf6-113c-462a-9792-e8851da582f9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> for the boolean primitive.</li></ul><ul id="35b15bb3-6b36-43e7-a6d8-b1653553fbde" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> for the symbol primitive.(new in 2015)</li></ul><figure id="44becb1d-511c-4098-8207-57726293cdd6" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%205.png"><img style="width:856px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%205.png"/></a></figure><h3 id="67983ee6-4772-4d4d-a7ca-a81cdb4f6469" class="">Not defined vs undefined</h3><figure id="3db39819-d269-4582-b831-cb8a00fb3d95" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%206.png"><img style="width:839px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%206.png"/></a></figure><p id="eebd7773-4357-4834-abbb-83349e5bc032" class="">type coercion. And type coercion just means that the language converts something for you from one type to another type automatically on the fly. So when the JavaScript tries to evaluate this equality, it converts one of the types to be the same type as the other variable and only then compares the values.</p><figure id="4fd2f267-073c-45a4-bc3b-f08442fbd9f1" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%207.png"><img style="width:814px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%207.png"/></a></figure><h3 id="6cc959a0-d42f-4668-9e57-a3080ee692b1" class="">curly braces &amp; coercion</h3><figure id="33af353a-4cb9-43fc-97f0-fa563a58e266" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%208.png"><img style="width:811px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%208.png"/></a></figure><p id="95e2cd98-4740-4752-af5c-2a2d2331a910" class="">each and one of these values is getting coerced into a boolean value. And we spoke about coercions before. So we&#x27;ll make the second cull without any arguments, the sideDish here, this variable, is undefined. So undefined right here gets coerced into a boolean and becomes false.</p><h3 id="3a20e2a9-a5a8-4602-9cea-fd32ae5278bb" class="">Objects</h3><figure id="03b8711e-4063-445e-9edf-0e591940c3c8" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%209.png"><img style="width:899px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%209.png"/></a></figure><p id="b10dd514-abe8-446e-a106-73855247b259" class="">right side format is called object literal</p><h3 id="c09f0b38-d81d-4e4a-9971-97cb5e0f2486" class="">Functions</h3><p id="57482804-d325-4372-9f81-be82f043041a" class="">functions in JavaScript are what&#x27;s called, first class data types. What that means is, is that whatever you could do with the variable, whatever you could do with an object you could also do with the function. You could pass that around, assign it to a variable which as you&#x27;ve seen before, you could pass it as an argument to another function, you could return it as a return result from a function. Functions in JavaScript are objects. They&#x27;re regular objects that have some special properties to them. So since they&#x27;re regular objects, I should be able to set properties on them just like I set properties on the other object.</p><figure id="9459f4fb-ddbe-4458-bb1c-dec87000525f" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2010.png"><img style="width:1015px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2010.png"/></a></figure><h3 id="05cdd5c3-81ae-4261-8620-450f0129214a" class="">passing by value vs reference</h3><figure id="b18bfc9d-cd4e-4c50-8d5b-119d64a4f0a3" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2011.png"><img style="width:792px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2011.png"/></a></figure><figure id="b1d909ca-e577-4f48-bea1-6e3d6dd8b260" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2012.png"><img style="width:769px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2012.png"/></a></figure><p id="da00576b-75c1-48a3-b066-d0de1593c2e4" class=""><strong>JavaScript Factory functions vs Constructor functions</strong>.: <a href="https://chamikakasun.medium.com/javascript-factory-functions-vs-constructor-functions-585919818afe">https://chamikakasun.medium.com/javascript-factory-functions-vs-constructor-functions-585919818afe</a></p><p id="6aca254e-b089-4c32-ac15-f48dbcc025d9" class="">go to this link for more details</p><h1 id="baf707bd-df18-4ad4-a047-7378f81814a2" class=""><strong>Factory functions</strong></h1><p id="be85ea95-e7f9-4339-9505-3af114327881" class="">A <strong>factory function</strong> is any function which is not a class or constructor that returns a (presumably new) object. In JavaScript, any function can return an object. When it does so without the <code>new</code> keyword, it’s a factory function.</p><pre id="107935f3-df2b-41a0-b2de-e5b4352515d3" class="code code-wrap"><code>function person(firstName, lastName, age) {
+  const person = {};
+  person.firstName = firstName;
+  person.lastName = lastName;
+  person.age = age;  
+  return person;
+}
+
+const mike = new person(&#x27;mike&#x27;, &#x27;grand&#x27;, 23);</code></pre><p id="d9124924-a5f8-4e5d-a93d-989928fb675a" class="">If you look at the above code inside the function, it creates a new object and attached passed arguments to that object as properties to that and return the new object. That is a simple factory function in JavaScript. Now let’s look at what is a Constructor function in JavaScript.</p><h1 id="65080f30-8d09-4648-8cce-4fe9689ec2fd" class=""><strong>Constructor Functions</strong></h1><p id="4ecd2964-96b1-47f6-9842-00547e628709" class="">As opposed to the constructor functions they differ only from its use case and a convention. Other than that factory functions and constructor functions are similar. The convention of defining a constructor function is to use capitalize function name to denote that this is a constructor function, the use case of this function is that creating similar types of objects with the <code>new</code> keyword, then later we can do instance checks using the<code>instanceof</code> keyword in JavaScript. That is where we can clearly see the difference between factory and constructor functions. Following code shows how to define a constructor function. Will dig into more details soon.</p><pre id="b30ebe2e-7e8a-4aa9-b374-9b0d2556443f" class="code code-wrap"><code>function Person(firstName, lastName, age) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+}
+
+const mike = new Person(&#x27;mike&#x27;, &#x27;grand&#x27;, 23);</code></pre><figure id="714a6432-002d-421a-9496-9d34ab7d2c00" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2013.png"><img style="width:865px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2013.png"/></a></figure><h3 id="7e6b8bc9-5e44-4163-b4d9-95c6b32e753d" class="">Function Expression</h3><p id="62498413-b16d-42ad-86c8-d1c9e1baa06a" class="">The function keyword can be used to define a function inside an expression.</p><p id="acc07a7e-bab8-4f07-89aa-7dabdd15a174" class="">The expression is not allowed at the start of a statement.</p><pre id="7eef01f3-392a-42f0-bac6-11a2343ffe56" class="code code-wrap"><code>function [name]([param1[, param2[, ..., paramN]]]) {
+   statements
+}</code></pre><figure id="526e93d0-8544-422c-8ac0-2809d45fa8ef" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2014.png"><img style="width:759px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2014.png"/></a></figure><h3 id="9cbbf0cf-9e4d-4767-8fc7-b9a5a21fcfda" class="">Object Literal </h3><figure id="6c177823-6f55-4350-99ee-815e6111c57c" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2015.png"><img style="width:877px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2015.png"/></a></figure><h3 id="e4930438-84d3-42e5-80e4-dc839d0a484c" class="">Arrays</h3><div><figure id="768f1bb7-5141-40cd-af1e-d90e817f95b8" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2016.png"><img style="width:829px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2016.png"/></a></figure><pre id="9256359f-3250-4f9a-95f4-77fcd527f2d2" class="code"><code>var myArray = [];
+myArray.push(value);
+myArray.pop();
+
+//splice()
+const months = [&#x27;Jan&#x27;, &#x27;March&#x27;, &#x27;April&#x27;, &#x27;June&#x27;];
+months.splice(1, 0, &#x27;Feb&#x27;);
+// inserts at index 1
+console.log(months);
+// expected output: Array [&quot;Jan&quot;, &quot;Feb&quot;, &quot;March&quot;, &quot;April&quot;, &quot;June&quot;]
+
+months.splice(4, 1, &#x27;May&#x27;);
+// replaces 1 element at index 4
+console.log(months);
+// expected output: Array [&quot;Jan&quot;, &quot;Feb&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;]</code></pre><pre id="8e890460-f221-43aa-9095-bcad76989900" class="code"><code>splice(start)
+splice(start, deleteCount)
+splice(start, deleteCount, item1)
+splice(start, deleteCount, item1, item2, itemN)</code></pre></div><p id="4d6ddc9e-358a-4a81-98a5-6885525352e4" class=""><strong>Closures</strong></p><p id="122370d3-785a-4c3a-9bc3-8be820daa806" class="">When a function is executed it gets a few things. <div class="indented"><p id="7cdd5149-b13b-4bc7-803b-61b2e9b5fed3" class="">Number one, it gets it&#x27;s own execution context so it&#x27;s isolated from everything else. </p><p id="d15794ce-84b7-4c5a-bb98-79bf43632908" class="">Number two, it gets a special this variable, we spoke about that before. </p><p id="8094a381-597c-4cfb-98ba-38d1690d82b9" class="">Number three, it gets a reference to its outer lexical environment. So when a variable is referenced inside of a function the first thing it does is check whether or not this variable has been defined inside of it&#x27;s local lexical environment.<div class="indented"><p id="3e2f4ef2-9d75-4817-bab8-f0ac5917b9b7" class="">meaning has the multiplier variable been defined inside the B function? And the answer is it&#x27;s not, it&#x27;s not defined. And if it&#x27;s not defined it means the next thing that the JavaScript engine does it looks at the outside lexical environment of this function. Well the outside lexical environment of this function meaning where it&#x27;s defined the outside of that is the makeMultiplier function. And the makeMultiplier function has that variable, so once it finds it it goes ahead and uses it in the function B that we&#x27;re executing right here</p></div></p><figure id="56e190ef-52be-406a-bf4c-d439a11005f9" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2017.png"><img style="width:931px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2017.png"/></a></figure></div></p><h3 id="caefe7c9-32cf-4c08-b6e4-4a1560a70088" class="">How does a function factory work when the return function doesn&#x27;t execute parent function</h3><p id="4ad8654d-ced4-4c38-9158-e5ca2fe2ca66" class="">It gets its own execution environment, and it gets its own outer variable environment, and so on. So how then can it possibly know what the multiplier variable is? Because at the time that this is executing the makeMultiplier function is no longer in the execution stack. It&#x27;s done. It returned whatever we needed to return, and is no longer functioning. It&#x27;s done. It&#x27;s part of the execution stack. Well, the reason this still works is because of JavaScript closures. <strong>Since a function like this returned from inside of this function JavaScript preserves its outer lexical environment memory space for this function,</strong> so this function can go ahead and produce what it needs to produce. So the multiplier is something that&#x27;s still sitting in memory in lexical outside scope of this function. So even when we call doubleALL it will go ahead and execute this function. It will create its own execution environment. It will go ahead and look for the multiplier variable in its own execution environment. It will not find it and it will then try to look for for this variable in its outer lexical environment, and the outer lexical environment memory space will still remain even though the makeMultiplier function no longer exists. That&#x27;s how we basically are able to trap or to close in whatever variables and whatever memory space is sitting outside of the lexical environment of this return function, and that&#x27;s how closures work.</p><h3 id="8a3570db-37f6-491b-be40-751ca72a1995" class="">Fake namespace</h3><p id="477573e9-e109-489f-8e5f-779c273442bc" class="">method 1: object fake namespace</p><figure id="8688c745-dc8c-46c6-a2b0-5fb735e7d568" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2018.png"><img style="width:853px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2018.png"/></a></figure><p id="b3488f44-c2dc-4220-a0b9-6884a8d54353" class="">a name space is basically just a container for some functionality and for some declarations. this is something that you could do in order to separate kind of your name spaces, separate your functionality into separate files and also into separate name spaces, so you don&#x27;t step one up on the other.</p><h3 id="d133b771-aa26-4547-95b1-eafe34f972a3" class="">Immediately Invoked Function Expressions (IIFEs)</h3><p id="fd2aa08a-c679-425c-a42b-06929ea1b017" class="">that&#x27;s an expression, something that produces a value. Well, what value does it produce? It produces a function object and then we&#x27;re taking that function object and we&#x27;re just putting parentheses right behind it, and that invokes that function object. And therefore, when we save, we&#x27;re once again, going to see &quot;Hello Coursera!&quot; and I could certainly even pass parameters through it.</p><figure id="4ea3edc5-1ff2-4bd1-b248-b0ce80dc7ae8" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2019.png"><img style="width:843px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2019.png"/></a></figure><p id="b194cdc8-0d66-49ce-a260-e0f991646ae6" class=""><a href="https://www.notion.so/JSON-7f242626178f402e90ff3f99deb3c7f2">how to use JSON in JS</a></p><h3 id="a7584a52-d42c-47b0-9c4a-2cd51e27e367" class="">DOM Manipulation </h3><figure id="4eededf8-fe88-452f-a0f2-affe44c70cc1" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2020.png"><img style="width:954px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2020.png"/></a></figure><h3 id="e54fd0ec-2771-44ad-ad72-346597011518" class="">Handling Events</h3><figure id="ecabed67-15d8-4045-b46f-c16861d44f82" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2021.png"><img style="width:1025px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2021.png"/></a></figure><h3 id="03df23b6-b91f-47c7-8e3f-a6865bc6e57b" class="">The event argument</h3><p id="d3aef57a-f618-4ccb-97fd-f116f82f7475" class=""><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">https://developer.mozilla.org/en-US/docs/Web/API/Element</a>  List of all events</p><figure id="651c2b2a-217b-484f-ad12-fac25609f70c" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2022.png"><img style="width:669px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2022.png"/></a></figure><h3 id="cef58ddb-4fd7-4b36-a2a7-b3005d6d2b9a" class="">JQuery, blur</h3><p id="0f6fe57e-a03f-4795-ba16-bb25b030564f" class=""><strong>$(function () {} );</strong> 
+  this function is going to get executed when HTML has been processed, but before all the images and extra resources have been loaded. 
+  Same as document.addEventListener(&quot;DOMContentLoaded&quot;..</p><p id="cf41c7e2-ca67-47a2-92ba-c9e80877e9b8" class="">$(&quot;something&quot;)  
+  this becomes a selector. 
+  Same as document.querySelector(&quot;#navbarToggle&quot;)</p><figure id="017e8a60-841a-44a6-be06-7193cb3fe244" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2023.png"><img style="width:649px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2023.png"/></a></figure><figure id="0562570c-a881-4a57-8e07-560800b8973d" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2024.png"><img style="width:553px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2024.png"/></a></figure><p id="15de247d-d843-4409-a86f-dd55a5080dda" class="">detail breakdown of <a href="https://www.notion.so/AJAX-10dfe77c37204f9ca596d9e24df7a2eb">sendGetRequest </a>function </p><h3 id="131868e0-f298-4f7e-8047-fe04c06d5174" class="">ajax example</h3><p id="0fbfeb56-6511-4660-a956-769fa880a7d2" class="">detailed <a href="https://coursera.org/share/c38f07f1cc49a6d0a966eedbc8f1aa2e">explanation </a>of the code below. transcript attached below:</p><figure id="3381a0e1-4b2e-47f4-af60-188b1dc9223e"><div class="source"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/subtitle.txt">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dae2ce85-1d78-44ca-b9ac-e01ce97f1b71/subtitle.txt</a></div></figure><figure id="592db4b5-288f-4703-b692-c5a7dfab3b6a" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2025.png"><img style="width:651px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2025.png"/></a></figure><figure id="54d9a8fb-ea55-4ef5-af67-70e91e693e99" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2026.png"><img style="width:502px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2026.png"/></a></figure><figure id="309e7a03-b453-458f-b875-a2732820e573" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2027.png"><img style="width:586px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2027.png"/></a></figure><h3 id="0712b4ad-8d22-4c53-a812-a4480c4dbfd1" class="">Changing &#x27;active&#x27; Button Style Through Javascript</h3><figure id="85ba1750-a6a6-483e-9884-91d748c20af5" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2028.png"><img style="width:617px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/Untitled%2028.png"/></a></figure><p id="efd20c70-08b2-429d-af92-cbcd444d74d5" class="">l<a href="https://www.notion.so/You-Don-t-Know-JS-aa196f66cbe2434cb5b7cf4b6568a4e1">et vs var</a></p><p id="1bf17b94-140b-4f1f-9880-f304855a1230" class="">Functions </p><figure id="a964fe10-e18d-4e0c-b721-7052f648bc14" class="image"><a href="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/A7D9D10F-E5F1-437F-9DCB-BA461E15D5B4.jpeg"><img style="width:4032px" src="JavaScript%20d8cacc41f7ac4c4a92f7519b81e5216b/A7D9D10F-E5F1-437F-9DCB-BA461E15D5B4.jpeg"/></a></figure><p id="d29927d8-efd4-4dfd-b339-d19ef1400c33" class="">
+</p></div></article></body></html>
